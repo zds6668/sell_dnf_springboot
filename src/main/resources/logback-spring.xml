@@ -45,7 +45,7 @@
         </rollingPolicy>
     </appender>
 
-    <root level="info">
+    <root level="off">
         <appender-ref ref="consoleLog" />
         <appender-ref ref="fileInfoLog" />
         <appender-ref ref="fileErrorLog" />

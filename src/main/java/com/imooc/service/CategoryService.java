@@ -3,10 +3,11 @@ package com.imooc.service;
 import com.imooc.dataobject.ProductCategory;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryService {
 
-    ProductCategory findOne(Integer categoryId);
+    Optional<ProductCategory> findOne(Integer categoryId);
 
     List<ProductCategory> findAll();
 

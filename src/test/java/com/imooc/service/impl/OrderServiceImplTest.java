@@ -2,10 +2,16 @@ package com.imooc.service.impl;
 
 import com.imooc.dataobject.OrderDetail;
 import com.imooc.dto.OrderDTO;
+import com.imooc.enums.OrderStatusEnum;
+import com.imooc.enums.PayStatusEnum;
+import lombok.extern.java.Log;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -38,21 +44,36 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOne() {
+        OrderDTO result = orderService.findOne("5488161586371676883");
+        System.out.println(result.getOrderAmount());
+        Assert.assertNotNull(result);
     }
 
     @Test
     public void findList() {
+        PageRequest request = new PageRequest(0,2 );
+        Page<OrderDTO> orderDTOPage = orderService.findList("110", request);
+        Assert.assertNotNull(orderDTOPage);
     }
 
     @Test
     public void cancel() {
+        OrderDTO orderDTO = orderService.findOne("5488161586371676883");
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(result.getOrderStatus(), OrderStatusEnum.CANCEL.getStatus());
     }
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne("5488161586371676883");
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(result.getOrderStatus(), OrderStatusEnum.FINISHED.getStatus());
     }
 
     @Test
     public void paid() {
+        OrderDTO orderDTO = orderService.findOne("5488161586371676883");
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getStatus(), result.getPayStatus());
     }
 }

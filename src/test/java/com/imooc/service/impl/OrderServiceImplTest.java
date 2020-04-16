@@ -4,7 +4,6 @@ import com.imooc.dataobject.OrderDetail;
 import com.imooc.dto.OrderDTO;
 import com.imooc.enums.OrderStatusEnum;
 import com.imooc.enums.PayStatusEnum;
-import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -75,5 +72,12 @@ public class OrderServiceImplTest {
         OrderDTO orderDTO = orderService.findOne("5488161586371676883");
         OrderDTO result = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getStatus(), result.getPayStatus());
+    }
+
+    @Test
+    public void list() {
+        PageRequest request = new PageRequest(0,2 );
+        Page<OrderDTO> orderDTOPage = orderService.findList("110", request);
+        Assert.assertNotNull(orderDTOPage);
     }
 }

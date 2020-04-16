@@ -8,6 +8,7 @@ public interface OrderService {
     OrderDTO create(OrderDTO OrderDTO);
     OrderDTO findOne(String orderId);
     Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
+    Page<OrderDTO> findList(Pageable pageable);
     OrderDTO cancel(OrderDTO orderDTO);
     OrderDTO finish(OrderDTO orderDTO);
     OrderDTO paid(OrderDTO orderDTO);

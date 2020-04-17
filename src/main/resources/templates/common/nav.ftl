@@ -2,7 +2,7 @@
     <ul class="nav sidebar-nav">
         <li class="sidebar-brand">
             <a href="#">
-                后台管理系统
+                dof后台
             </a>
         </li>
         <li>

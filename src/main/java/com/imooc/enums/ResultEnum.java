@@ -16,6 +16,7 @@ public enum ResultEnum {
     PARAMERROR(18, "参数不正确"),
     CARTEMPTY(19, "购物车空的"),
     ORDERFINISH(20, "订单已完结"),
+    PRODUCTSTATUSERROR(21, "商品状态错误"),
     ;
     private Integer code;
     private String msg;

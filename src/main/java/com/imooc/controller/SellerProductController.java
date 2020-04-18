@@ -1,6 +1,8 @@
 package com.imooc.controller;
 
 import com.imooc.dataobject.ProductInfo;
+import com.imooc.enums.ResultEnum;
+import com.imooc.exception.SellException;
 import com.imooc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import java.util.Map;
 public class SellerProductController {
     @Autowired
     private ProductService productService;
+
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
@@ -28,5 +31,39 @@ public class SellerProductController {
         map.put("currentPage", page);
         map.put("currentSize", size);
         return new ModelAndView("product/list", map);
+    }
+
+    @RequestMapping("/onsale")
+    public ModelAndView onSale(@RequestParam("productId") String productId,
+                               Map<String, Object> map) {
+        try {
+            productService.onSale(productId);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url", "/seller/product/list");
+            map.put("status", 12);
+            return new ModelAndView("/common/error", map);
+        }
+        map.put("url", "/seller/product/list");
+        map.put("msg", ResultEnum.SUCCESS.getMsg());
+        map.put("status", ResultEnum.SUCCESS.getCode());
+        return new ModelAndView("/common/error", map);
+    }
+
+    @RequestMapping("/offsale")
+    public ModelAndView offSale(@RequestParam("productId") String productId,
+                               Map<String, Object> map) {
+        try {
+            productService.offSale(productId);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url", "/seller/product/list");
+            map.put("status", 12);
+            return new ModelAndView("/common/error", map);
+        }
+        map.put("url", "/seller/product/list");
+        map.put("msg", ResultEnum.SUCCESS.getMsg());
+        map.put("status", ResultEnum.SUCCESS.getCode());
+        return new ModelAndView("/common/error", map);
     }
 }

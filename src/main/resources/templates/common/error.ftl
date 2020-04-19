@@ -21,5 +21,5 @@
             </div>
         </div>
     </div></body>
-<script>setTimeout('location.href="${url}"', 3000);</script>
+<script>setTimeout('location.href="${url}"', 1000);</script>
 </html>

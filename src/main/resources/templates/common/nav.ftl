@@ -26,6 +26,9 @@
         </li>
 
         <li>
+            <a href="/seller/loginpage"><i class="fa fa-fw fa-list-alt"></i> 登录页</a>
+        </li>
+        <li>
             <a href="/seller/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>
     </ul>

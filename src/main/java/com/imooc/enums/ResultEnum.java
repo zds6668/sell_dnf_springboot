@@ -17,6 +17,7 @@ public enum ResultEnum {
     CARTEMPTY(19, "购物车空的"),
     ORDERFINISH(20, "订单已完结"),
     PRODUCTSTATUSERROR(21, "商品状态错误"),
+    USERERROR(22, "登录用户账号或密码不正确"),
     ;
     private Integer code;
     private String msg;

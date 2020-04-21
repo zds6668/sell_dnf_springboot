@@ -25,7 +25,7 @@ public class SellerAuthorizeAspect {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    @Pointcut("execution(public * com.imooc.controller.Seller*.*(..))" +
+    @Pointcut("execution(public * com.imooc.controller.Sell*.*(..))" +
             "&& !execution(public * com.imooc.controller.SellerUserController.*(..))")
     public void verify() {
     }
@@ -35,11 +35,11 @@ public class SellerAuthorizeAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
-        if (cookie.getValue() == null) {
+        if (null == cookie) {
             log.info("[登录检查] 未登陆的操作");
             throw new SellerAuthorizeException();
         }
-        String tokenValue = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie));
+        String tokenValue = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
         if (StringUtils.isEmpty(tokenValue)) {
             log.info("[登录检查] 登录已无效");
             throw new SellerAuthorizeException();

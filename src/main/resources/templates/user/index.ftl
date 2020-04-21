@@ -13,7 +13,7 @@
                             <input name="username" type="text"/>
                         </div>
                         <div class=" form-group">
-                            <label for="exampleInputPassword1">密码</label>
+                            <label for="exampleInputPassword1">密 码</label>
                             <input name="password" type="text"/>
                         </div>
                         <button type="submit" class="btn btn-default">登录</button>

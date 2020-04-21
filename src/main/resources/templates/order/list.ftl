@@ -77,6 +77,29 @@
             </div>
         </div>
     </div>
+    <script>
+        var websocket = null;
+        if ('WebSocket' in window) {
+            websocket = new WebSocket('ws://127.0.0.1:8080/webSocket');
+        } else {
+            alert('该浏览器不支持websocket');
+        }
+        websocket.onopen = function (event) {
+            console.log('建立连接');
+        }
+        websocket.onclose = function (event) {
+            console.log('关闭连接');
+        }
+        websocket.onmessage = function (event) {
+            console.log('收到消息');
+        }
+        websocket.onerror = function () {
+            alert('发生错误');
+        }
+        websocket.onbeforeunload = function () {
+            websocket.close();
+        }
+    </script>
     </body>
 </html>
 
